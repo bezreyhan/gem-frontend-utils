@@ -7,14 +7,18 @@ var babel = require('gulp-babel');
 gulp.task('coffee-react', function() {
   gulp.src('src/js/components/*.coffee')
     .pipe(cjsx({bare: true}).on('error', gutil.log))
-    .pipe(gulp.dest('dist/js/components'))
+    // files get added to the root folder rather than a dist folder
+    // because it makes requireing them easier
+    .pipe(gulp.dest('components'))
 })
 
 
 gulp.task('babel', function() {
   gulp.src('src/js/**/*.js')
     .pipe(babel())
-    .pipe(gulp.dest('dist/js'))
+    // files get added to the root folder rather than a dist folder
+    // because it makes requireing them easier
+    .pipe(gulp.dest('./'))
 })
 
 gulp.task('watch', function() {
