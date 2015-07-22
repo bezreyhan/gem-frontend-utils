@@ -1,5 +1,5 @@
 {
-  "name": "gem-frontend-utils",
+  "name": "gem-utils",
   "version": "1.0.0",
   "description": "Components, utils, and pattern for the front-end",
   "main": "index.js",
