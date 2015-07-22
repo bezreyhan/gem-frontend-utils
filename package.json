@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/bezreyhan/gem-frontend-utils/issues"
   },
-  "homepage": "https://github.com/bezreyhan/gem-frontend-utils#readme"
+  "homepage": "https://github.com/bezreyhan/gem-frontend-utils#readme",
+  "dependencies": {
+    "react": "^0.13.3"
+  }
 }
