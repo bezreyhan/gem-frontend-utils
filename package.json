@@ -18,5 +18,11 @@
   "homepage": "https://github.com/bezreyhan/gem-frontend-utils#readme",
   "dependencies": {
     "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.1.0",
+    "gulp-cjsx": "^3.0.0",
+    "gulp-util": "^3.0.6"
   }
 }
