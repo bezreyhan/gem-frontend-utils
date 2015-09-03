@@ -103,7 +103,7 @@ Input = React.createClass {
 
   render: ->
     inputError = if @state.error then "error" else ''
-    {type, placeholder, value, className, onChange, name, onBlur, onFocus} = @props
+    {type, placeholder, value, className, onChange, name, onBlur, onFocus, onHover} = @props
 
     <span className="validation-input #{className}">
       {
@@ -124,6 +124,7 @@ Input = React.createClass {
                   onChange={onChange}
                   onFocus={onFocus}
                   onBlur={onBlur}
+                  onHover={onHover}
                 />
                 {@props.labelText}
               </label>
@@ -143,6 +144,7 @@ Input = React.createClass {
                 onChange={onChange}
                 onFocus={onFocus}
                 onBlur={onBlur}
+                onHover={onHover}
               />
             </div>
       }
