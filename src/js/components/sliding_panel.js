@@ -9,8 +9,8 @@ let SlidingPanel = React.createClass({
 
   render() {
     let {isOpen, panelIndex} = this.state;
-    let slidingPanelClasses = classnames('sliding-panel', {'is-visible': isOpen});
-    let clickLayerClasses = classnames('click-layer', {'is-visible': isOpen});
+    let slidingPanelClass = classnames('sliding-panel', {'is-visible': isOpen});
+    let clickLayerClass = classnames('click-layer', {'is-visible': isOpen});
     
     let navIcons = ['pencil', 'pencil', 'pencil'].map((iconClass, i) => {
       if (panelIndex === i) {
@@ -36,7 +36,7 @@ let SlidingPanel = React.createClass({
           Btn 3
         </button>
 
-        <div className={slidingPanelClasses}>
+        <div className={slidingPanelClass}>
           <nav>
             {navIcons}
           </nav>
@@ -53,7 +53,7 @@ let SlidingPanel = React.createClass({
 
         </div>
 
-        <div className={clickLayerClasses} onClick={this.closePanel}></div>
+        <div className={clickLayerClass} onClick={this.closePanel}></div>
       </span>
     );
   },

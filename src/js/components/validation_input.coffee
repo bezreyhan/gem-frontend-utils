@@ -101,11 +101,11 @@ Input = React.createClass {
     inputError = if @state.error then "error" else ''
     {type, placeholder, value, className, onChange} = @props
 
-    <span className='validation-input'>
+    <span className="validation-input #{className}">
       {
         switch @props.type
           when 'checkbox'
-            <div className={className}>
+            <div>
               <label className={inputError}>
                 {@state.error}
               </label>
@@ -121,7 +121,7 @@ Input = React.createClass {
               </label>
             </div>
           else
-            <div className={className}>
+            <div>
               <label className={inputError}>
                 {@state.error || @props.labelText}
               </label>

@@ -14,8 +14,8 @@ var SlidingPanel = React.createClass({
     var isOpen = _state.isOpen;
     var panelIndex = _state.panelIndex;
 
-    var slidingPanelClasses = classnames('sliding-panel', { 'is-visible': isOpen });
-    var clickLayerClasses = classnames('click-layer', { 'is-visible': isOpen });
+    var slidingPanelClass = classnames('sliding-panel', { 'is-visible': isOpen });
+    var clickLayerClass = classnames('click-layer', { 'is-visible': isOpen });
 
     var navIcons = ['pencil', 'pencil', 'pencil'].map(function (iconClass, i) {
       if (panelIndex === i) {
@@ -57,7 +57,7 @@ var SlidingPanel = React.createClass({
       ),
       React.createElement(
         'div',
-        { className: slidingPanelClasses },
+        { className: slidingPanelClass },
         React.createElement(
           'nav',
           null,
@@ -83,7 +83,7 @@ var SlidingPanel = React.createClass({
           )
         )
       ),
-      React.createElement('div', { className: clickLayerClasses, onClick: this.closePanel })
+      React.createElement('div', { className: clickLayerClass, onClick: this.closePanel })
     );
   },
 

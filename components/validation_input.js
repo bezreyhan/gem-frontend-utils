@@ -98,13 +98,11 @@ Input = React.createClass({
     inputError = this.state.error ? "error" : '';
     ref = this.props, type = ref.type, placeholder = ref.placeholder, value = ref.value, className = ref.className, onChange = ref.onChange;
     return React.createElement("span", {
-      "className": 'validation-input'
+      "className": "validation-input " + className
     }, ((function() {
       switch (this.props.type) {
         case 'checkbox':
-          return React.createElement("div", {
-            "className": className
-          }, React.createElement("label", {
+          return React.createElement("div", null, React.createElement("label", {
             "className": inputError
           }, this.state.error), React.createElement("label", null, React.createElement("input", {
             "className": inputError,
@@ -114,9 +112,7 @@ Input = React.createClass({
             "value": value
           }), this.props.labelText));
         default:
-          return React.createElement("div", {
-            "className": className
-          }, React.createElement("label", {
+          return React.createElement("div", null, React.createElement("label", {
             "className": inputError
           }, this.state.error || this.props.labelText), React.createElement("input", {
             "className": inputError,
