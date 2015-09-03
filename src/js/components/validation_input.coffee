@@ -88,7 +88,7 @@ Input = React.createClass {
   propTypes: {
     validations: React.PropTypes.object,
     # Used in error messages and gets added to the input element
-    # whivh can be utilized by a <label for=...>
+    # as an id prop, which can be utilized by a <label for=...>
     name: React.PropTypes.string,
     # Optional - creates a label that goes above the input
     #            with the provided text
@@ -117,7 +117,7 @@ Input = React.createClass {
                   type={type}
                   placeholder={placeholder}
                   value={value}
-                  name={name}
+                  id={name}
                 />
                 {@props.labelText}
               </label>
@@ -134,7 +134,7 @@ Input = React.createClass {
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                name={name}
+                id={name}
               />
             </div>
       }

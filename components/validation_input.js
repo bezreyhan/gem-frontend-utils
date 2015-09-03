@@ -110,7 +110,7 @@ Input = React.createClass({
             "type": type,
             "placeholder": placeholder,
             "value": value,
-            "name": name
+            "id": name
           }), this.props.labelText));
         default:
           return React.createElement("div", null, React.createElement("label", {
@@ -122,7 +122,7 @@ Input = React.createClass({
             "placeholder": placeholder,
             "value": value,
             "onChange": onChange,
-            "name": name
+            "id": name
           }));
       }
     }).call(this)));
