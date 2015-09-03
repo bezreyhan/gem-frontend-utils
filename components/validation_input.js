@@ -96,9 +96,9 @@ Input = React.createClass({
     onBlur: React.PropTypes.func
   },
   render: function() {
-    var className, inputError, name, onBlur, onChange, onFocus, placeholder, ref, type, value;
+    var className, inputError, name, onBlur, onChange, onFocus, onMouseEnter, onMouseOut, placeholder, ref, type, value;
     inputError = this.state.error ? "error" : '';
-    ref = this.props, type = ref.type, placeholder = ref.placeholder, value = ref.value, className = ref.className, onChange = ref.onChange, name = ref.name, onBlur = ref.onBlur, onFocus = ref.onFocus;
+    ref = this.props, type = ref.type, placeholder = ref.placeholder, value = ref.value, className = ref.className, onChange = ref.onChange, name = ref.name, onBlur = ref.onBlur, onFocus = ref.onFocus, onMouseEnter = ref.onMouseEnter, onMouseOut = ref.onMouseOut;
     return React.createElement("span", {
       "className": "validation-input " + className
     }, ((function() {
@@ -115,7 +115,9 @@ Input = React.createClass({
             "id": name,
             "onChange": onChange,
             "onFocus": onFocus,
-            "onBlur": onBlur
+            "onBlur": onBlur,
+            "onMouseEnter": onMouseEnter,
+            "onMouseOut": onMouseOut
           }), this.props.labelText));
         default:
           return React.createElement("div", null, React.createElement("label", {
@@ -129,7 +131,9 @@ Input = React.createClass({
             "id": name,
             "onChange": onChange,
             "onFocus": onFocus,
-            "onBlur": onBlur
+            "onBlur": onBlur,
+            "onMouseEnter": onMouseEnter,
+            "onMouseOut": onMouseOut
           }));
       }
     }).call(this)));
