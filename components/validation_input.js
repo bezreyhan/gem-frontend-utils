@@ -94,9 +94,9 @@ Input = React.createClass({
     onChange: React.PropTypes.func
   },
   render: function() {
-    var className, inputError, onChange, placeholder, ref, type, value;
+    var className, inputError, name, onChange, placeholder, ref, type, value;
     inputError = this.state.error ? "error" : '';
-    ref = this.props, type = ref.type, placeholder = ref.placeholder, value = ref.value, className = ref.className, onChange = ref.onChange;
+    ref = this.props, type = ref.type, placeholder = ref.placeholder, value = ref.value, className = ref.className, onChange = ref.onChange, name = ref.name;
     return React.createElement("span", {
       "className": "validation-input " + className
     }, ((function() {
@@ -109,7 +109,8 @@ Input = React.createClass({
             "ref": "input",
             "type": type,
             "placeholder": placeholder,
-            "value": value
+            "value": value,
+            "name": name
           }), this.props.labelText));
         default:
           return React.createElement("div", null, React.createElement("label", {
@@ -120,7 +121,8 @@ Input = React.createClass({
             "type": type,
             "placeholder": placeholder,
             "value": value,
-            "onChange": onChange
+            "onChange": onChange,
+            "name": name
           }));
       }
     }).call(this)));
