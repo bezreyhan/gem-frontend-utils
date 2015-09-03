@@ -94,13 +94,16 @@ Input = React.createClass {
     #            with the provided text
     labelText: React.PropTypes.string,
     className: React.PropTypes.string,
-    onChange: React.PropTypes.func
+    onChange: React.PropTypes.func,
+    onFocus: React.PropTypes.func,
+    onBlur: React.PropTypes.func
+
   }
 
 
   render: ->
     inputError = if @state.error then "error" else ''
-    {type, placeholder, value, className, onChange, name} = @props
+    {type, placeholder, value, className, onChange, name, onBlur, onFocus} = @props
 
     <span className="validation-input #{className}">
       {
@@ -118,6 +121,9 @@ Input = React.createClass {
                   placeholder={placeholder}
                   value={value}
                   id={name}
+                  onChange={onChange}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
                 />
                 {@props.labelText}
               </label>
@@ -133,8 +139,10 @@ Input = React.createClass {
                 type={type}
                 placeholder={placeholder}
                 value={value}
-                onChange={onChange}
                 id={name}
+                onChange={onChange}
+                onFocus={onFocus}
+                onBlur={onBlur}
               />
             </div>
       }

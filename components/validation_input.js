@@ -91,12 +91,14 @@ Input = React.createClass({
     name: React.PropTypes.string,
     labelText: React.PropTypes.string,
     className: React.PropTypes.string,
-    onChange: React.PropTypes.func
+    onChange: React.PropTypes.func,
+    onFocus: React.PropTypes.func,
+    onBlur: React.PropTypes.func
   },
   render: function() {
-    var className, inputError, name, onChange, placeholder, ref, type, value;
+    var className, inputError, name, onBlur, onChange, onFocus, placeholder, ref, type, value;
     inputError = this.state.error ? "error" : '';
-    ref = this.props, type = ref.type, placeholder = ref.placeholder, value = ref.value, className = ref.className, onChange = ref.onChange, name = ref.name;
+    ref = this.props, type = ref.type, placeholder = ref.placeholder, value = ref.value, className = ref.className, onChange = ref.onChange, name = ref.name, onBlur = ref.onBlur, onFocus = ref.onFocus;
     return React.createElement("span", {
       "className": "validation-input " + className
     }, ((function() {
@@ -110,7 +112,10 @@ Input = React.createClass({
             "type": type,
             "placeholder": placeholder,
             "value": value,
-            "id": name
+            "id": name,
+            "onChange": onChange,
+            "onFocus": onFocus,
+            "onBlur": onBlur
           }), this.props.labelText));
         default:
           return React.createElement("div", null, React.createElement("label", {
@@ -121,8 +126,10 @@ Input = React.createClass({
             "type": type,
             "placeholder": placeholder,
             "value": value,
+            "id": name,
             "onChange": onChange,
-            "id": name
+            "onFocus": onFocus,
+            "onBlur": onBlur
           }));
       }
     }).call(this)));
