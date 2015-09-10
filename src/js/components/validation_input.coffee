@@ -96,7 +96,9 @@ Input = React.createClass {
     className: React.PropTypes.string,
     onChange: React.PropTypes.func,
     onFocus: React.PropTypes.func,
-    onBlur: React.PropTypes.func
+    onBlur: React.PropTypes.func,
+    # add the icon to the right of the input
+    iconClass: React.PropTypes.string
 
   }
 
@@ -109,32 +111,10 @@ Input = React.createClass {
       {
         switch @props.type
           when 'checkbox'
-            <div>
-              <label className={inputError}>
-                {@state.error}
-              </label>
-              <label>
-                <input
-                  className={inputError}
-                  ref="input"
-                  type={type}
-                  placeholder={placeholder}
-                  value={value}
-                  id={name}
-                  onChange={onChange}
-                  onFocus={onFocus}
-                  onBlur={onBlur}
-                  onMouseEnter={onMouseEnter}
-                  onMouseOut={onMouseOut}
-                />
-                {@props.labelText}
-              </label>
-            </div>
-          else
-            <div>
-              <label className={inputError}>
-                {@state.error || @props.labelText}
-              </label>
+            <label className={inputError}>
+              {@state.error}
+            </label>
+            <label>
               <input
                 className={inputError}
                 ref="input"
@@ -148,7 +128,25 @@ Input = React.createClass {
                 onMouseEnter={onMouseEnter}
                 onMouseOut={onMouseOut}
               />
-            </div>
+              {@props.labelText}
+            </label>
+          else
+            <label className={inputError}>
+              {@state.error || @props.labelText}
+            </label>
+            <input
+              className={inputError}
+              ref="input"
+              type={type}
+              placeholder={placeholder}
+              value={value}
+              id={name}
+              onChange={onChange}
+              onFocus={onFocus}
+              onBlur={onBlur}
+              onMouseEnter={onMouseEnter}
+              onMouseOut={onMouseOut}
+            />
       }
     </span>
 

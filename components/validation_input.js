@@ -93,7 +93,8 @@ Input = React.createClass({
     className: React.PropTypes.string,
     onChange: React.PropTypes.func,
     onFocus: React.PropTypes.func,
-    onBlur: React.PropTypes.func
+    onBlur: React.PropTypes.func,
+    iconClass: React.PropTypes.string
   },
   render: function() {
     var className, inputError, name, onBlur, onChange, onFocus, onMouseEnter, onMouseOut, placeholder, ref, type, value;
@@ -104,9 +105,10 @@ Input = React.createClass({
     }, ((function() {
       switch (this.props.type) {
         case 'checkbox':
-          return React.createElement("div", null, React.createElement("label", {
+          React.createElement("label", {
             "className": inputError
-          }, this.state.error), React.createElement("label", null, React.createElement("input", {
+          }, this.state.error);
+          return React.createElement("label", null, React.createElement("input", {
             "className": inputError,
             "ref": "input",
             "type": type,
@@ -118,11 +120,12 @@ Input = React.createClass({
             "onBlur": onBlur,
             "onMouseEnter": onMouseEnter,
             "onMouseOut": onMouseOut
-          }), this.props.labelText));
+          }), this.props.labelText);
         default:
-          return React.createElement("div", null, React.createElement("label", {
+          React.createElement("label", {
             "className": inputError
-          }, this.state.error || this.props.labelText), React.createElement("input", {
+          }, this.state.error || this.props.labelText);
+          return React.createElement("input", {
             "className": inputError,
             "ref": "input",
             "type": type,
@@ -134,7 +137,7 @@ Input = React.createClass({
             "onBlur": onBlur,
             "onMouseEnter": onMouseEnter,
             "onMouseOut": onMouseOut
-          }));
+          });
       }
     }).call(this)));
   },
