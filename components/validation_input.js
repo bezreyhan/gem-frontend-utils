@@ -104,8 +104,11 @@ Input = React.createClass({
       "className": "validation-input " + className
     }, (this.props.type === 'checkbox' ? [
       React.createElement("label", {
-        "className": inputError
-      }, this.state.error), React.createElement("label", null, React.createElement("input", {
+        "className": inputError,
+        "key": 1.
+      }, this.state.error), React.createElement("label", {
+        "key": 2.
+      }, React.createElement("input", {
         "className": inputError,
         "ref": "input",
         "type": type,
@@ -120,8 +123,10 @@ Input = React.createClass({
       }), this.props.labelText)
     ] : [
       React.createElement("label", {
-        "className": inputError
+        "className": inputError,
+        "key": 1.
       }, this.state.error || this.props.labelText), React.createElement("input", {
+        "key": 2.,
         "className": inputError,
         "ref": "input",
         "type": type,
