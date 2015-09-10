@@ -110,9 +110,9 @@ Input = React.createClass {
     <span className="validation-input #{className}">
       {
         if @props.type == 'checkbox'
-          <label className={inputError}>
+          [<label className={inputError}>
             {@state.error}
-          </label>
+          </label>,
           <label>
             <input
               className={inputError}
@@ -128,11 +128,11 @@ Input = React.createClass {
               onMouseOut={onMouseOut}
             />
             {@props.labelText}
-          </label>
+          </label>]
         else
-          <label className={inputError}>
+          [<label className={inputError}>
             {@state.error || @props.labelText}
-          </label>
+          </label>,
           <input
             className={inputError}
             ref="input"
@@ -145,7 +145,7 @@ Input = React.createClass {
             onBlur={onBlur}
             onMouseEnter={onMouseEnter}
             onMouseOut={onMouseOut}
-          />
+          />]
       }
     </span>
 
