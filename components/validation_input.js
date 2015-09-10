@@ -93,16 +93,12 @@ Input = React.createClass({
     className: React.PropTypes.string,
     onChange: React.PropTypes.func,
     onFocus: React.PropTypes.func,
-    onBlur: React.PropTypes.func,
-    iconClass: React.PropTypes.string
+    onBlur: React.PropTypes.func
   },
   render: function() {
-    var className, icon, iconClass, inputError, name, onBlur, onChange, onFocus, onMouseEnter, onMouseOut, placeholder, ref, type, value;
+    var className, inputError, name, onBlur, onChange, onFocus, onMouseEnter, onMouseOut, placeholder, ref, type, value;
     inputError = this.state.error ? "error" : '';
-    ref = this.props, type = ref.type, placeholder = ref.placeholder, value = ref.value, className = ref.className, onChange = ref.onChange, name = ref.name, onBlur = ref.onBlur, onFocus = ref.onFocus, onMouseEnter = ref.onMouseEnter, onMouseOut = ref.onMouseOut, iconClass = ref.iconClass;
-    icon = iconClass ? React.createElement("div", {
-      "className": "icon " + iconClass
-    }) : null;
+    ref = this.props, type = ref.type, placeholder = ref.placeholder, value = ref.value, className = ref.className, onChange = ref.onChange, name = ref.name, onBlur = ref.onBlur, onFocus = ref.onFocus, onMouseEnter = ref.onMouseEnter, onMouseOut = ref.onMouseOut;
     if (this.props.type === 'checkbox') {
       return React.createElement("span", {
         "className": "validation-input " + className
@@ -124,7 +120,7 @@ Input = React.createClass({
     } else {
       return React.createElement("span", {
         "className": "validation-input " + className
-      }, icon, React.createElement("label", {
+      }, React.createElement("label", {
         "className": inputError
       }, this.state.error || this.props.labelText), React.createElement("input", {
         "className": inputError,

@@ -96,17 +96,13 @@ Input = React.createClass {
     className: React.PropTypes.string,
     onChange: React.PropTypes.func,
     onFocus: React.PropTypes.func,
-    onBlur: React.PropTypes.func,
-    # add the icon to the right of the input
-    iconClass: React.PropTypes.string
-
+    onBlur: React.PropTypes.func
   }
 
 
   render: ->
     inputError = if @state.error then "error" else ''
-    {type, placeholder, value, className, onChange, name, onBlur, onFocus, onMouseEnter, onMouseOut, iconClass} = @props
-    icon = if iconClass then <div className="icon #{iconClass}" /> else null
+    {type, placeholder, value, className, onChange, name, onBlur, onFocus, onMouseEnter, onMouseOut} = @props
 
     if @props.type == 'checkbox' 
       <span className="validation-input #{className}">
@@ -132,7 +128,6 @@ Input = React.createClass {
       </span>
     else
       <span className="validation-input #{className}">
-        { icon }
         <label className={inputError}>
           {@state.error || @props.labelText}
         </label>
