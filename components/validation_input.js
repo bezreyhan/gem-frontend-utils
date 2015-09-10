@@ -97,11 +97,11 @@ Input = React.createClass({
     iconClass: React.PropTypes.string
   },
   render: function() {
-    var className, icon, inputError, name, onBlur, onChange, onFocus, onMouseEnter, onMouseOut, placeholder, ref, type, value;
+    var className, icon, iconClass, inputError, name, onBlur, onChange, onFocus, onMouseEnter, onMouseOut, placeholder, ref, type, value;
     inputError = this.state.error ? "error" : '';
-    ref = this.props, type = ref.type, placeholder = ref.placeholder, value = ref.value, className = ref.className, onChange = ref.onChange, name = ref.name, onBlur = ref.onBlur, onFocus = ref.onFocus, onMouseEnter = ref.onMouseEnter, onMouseOut = ref.onMouseOut;
-    icon = this.props.iconClass ? React.createElement("div", {
-      "className": 'icon'
+    ref = this.props, type = ref.type, placeholder = ref.placeholder, value = ref.value, className = ref.className, onChange = ref.onChange, name = ref.name, onBlur = ref.onBlur, onFocus = ref.onFocus, onMouseEnter = ref.onMouseEnter, onMouseOut = ref.onMouseOut, iconClass = ref.iconClass;
+    icon = iconClass ? React.createElement("div", {
+      "className": "icon " + iconClass
     }) : null;
     if (this.props.type === 'checkbox') {
       return React.createElement("span", {
