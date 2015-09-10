@@ -102,44 +102,35 @@ Input = React.createClass({
     ref = this.props, type = ref.type, placeholder = ref.placeholder, value = ref.value, className = ref.className, onChange = ref.onChange, name = ref.name, onBlur = ref.onBlur, onFocus = ref.onFocus, onMouseEnter = ref.onMouseEnter, onMouseOut = ref.onMouseOut;
     return React.createElement("span", {
       "className": "validation-input " + className
-    }, ((function() {
-      switch (this.props.type) {
-        case 'checkbox':
-          React.createElement("label", {
-            "className": inputError
-          }, this.state.error);
-          return React.createElement("label", null, React.createElement("input", {
-            "className": inputError,
-            "ref": "input",
-            "type": type,
-            "placeholder": placeholder,
-            "value": value,
-            "id": name,
-            "onChange": onChange,
-            "onFocus": onFocus,
-            "onBlur": onBlur,
-            "onMouseEnter": onMouseEnter,
-            "onMouseOut": onMouseOut
-          }), this.props.labelText);
-        default:
-          React.createElement("label", {
-            "className": inputError
-          }, this.state.error || this.props.labelText);
-          return React.createElement("input", {
-            "className": inputError,
-            "ref": "input",
-            "type": type,
-            "placeholder": placeholder,
-            "value": value,
-            "id": name,
-            "onChange": onChange,
-            "onFocus": onFocus,
-            "onBlur": onBlur,
-            "onMouseEnter": onMouseEnter,
-            "onMouseOut": onMouseOut
-          });
-      }
-    }).call(this)));
+    }, (this.props.type === 'checkbox' ? (React.createElement("label", {
+      "className": inputError
+    }, this.state.error), React.createElement("label", null, React.createElement("input", {
+      "className": inputError,
+      "ref": "input",
+      "type": type,
+      "placeholder": placeholder,
+      "value": value,
+      "id": name,
+      "onChange": onChange,
+      "onFocus": onFocus,
+      "onBlur": onBlur,
+      "onMouseEnter": onMouseEnter,
+      "onMouseOut": onMouseOut
+    }), this.props.labelText)) : (React.createElement("label", {
+      "className": inputError
+    }, this.state.error || this.props.labelText), React.createElement("input", {
+      "className": inputError,
+      "ref": "input",
+      "type": type,
+      "placeholder": placeholder,
+      "value": value,
+      "id": name,
+      "onChange": onChange,
+      "onFocus": onFocus,
+      "onBlur": onBlur,
+      "onMouseEnter": onMouseEnter,
+      "onMouseOut": onMouseOut
+    }))));
   },
   getInitialState: function() {
     return {

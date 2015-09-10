@@ -109,31 +109,11 @@ Input = React.createClass {
 
     <span className="validation-input #{className}">
       {
-        switch @props.type
-          when 'checkbox'
-            <label className={inputError}>
-              {@state.error}
-            </label>
-            <label>
-              <input
-                className={inputError}
-                ref="input"
-                type={type}
-                placeholder={placeholder}
-                value={value}
-                id={name}
-                onChange={onChange}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                onMouseEnter={onMouseEnter}
-                onMouseOut={onMouseOut}
-              />
-              {@props.labelText}
-            </label>
-          else
-            <label className={inputError}>
-              {@state.error || @props.labelText}
-            </label>
+        if @props.type == 'checkbox'
+          <label className={inputError}>
+            {@state.error}
+          </label>
+          <label>
             <input
               className={inputError}
               ref="input"
@@ -147,6 +127,25 @@ Input = React.createClass {
               onMouseEnter={onMouseEnter}
               onMouseOut={onMouseOut}
             />
+            {@props.labelText}
+          </label>
+        else
+          <label className={inputError}>
+            {@state.error || @props.labelText}
+          </label>
+          <input
+            className={inputError}
+            ref="input"
+            type={type}
+            placeholder={placeholder}
+            value={value}
+            id={name}
+            onChange={onChange}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            onMouseEnter={onMouseEnter}
+            onMouseOut={onMouseOut}
+          />
       }
     </span>
 
