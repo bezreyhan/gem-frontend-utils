@@ -106,53 +106,51 @@ Input = React.createClass {
   render: ->
     inputError = if @state.error then "error" else ''
     {type, placeholder, value, className, onChange, name, onBlur, onFocus, onMouseEnter, onMouseOut} = @props
+    icon = if @props.iconClass then <div className='icon' /> else null
 
-    <span className="validation-input #{className}">
-      {
-        if @props.type == 'checkbox'
-          [
-            <label className={inputError} key={1}>
-              {@state.error}
-            </label>,
-            <label key={2}>
-              <input
-                className={inputError}
-                ref="input"
-                type={type}
-                placeholder={placeholder}
-                value={value}
-                id={name}
-                onChange={onChange}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                onMouseEnter={onMouseEnter}
-                onMouseOut={onMouseOut}
-              />
-              {@props.labelText}
-            </label>
-          ]
-        else
-          [
-            <label className={inputError} key={1}>
-              {@state.error || @props.labelText}
-            </label>,
-            <input
-              key={2}
-              className={inputError}
-              ref="input"
-              type={type}
-              placeholder={placeholder}
-              value={value}
-              id={name}
-              onChange={onChange}
-              onFocus={onFocus}
-              onBlur={onBlur}
-              onMouseEnter={onMouseEnter}
-              onMouseOut={onMouseOut}
-            />
-          ]
-      }
-    </span>
+    if @props.type == 'checkbox' 
+      <span className="validation-input #{className}">
+        <label className={inputError}>
+          {@state.error}
+        </label>
+        <label>
+          <input
+            className={inputError}
+            ref="input"
+            type={type}
+            placeholder={placeholder}
+            value={value}
+            id={name}
+            onChange={onChange}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            onMouseEnter={onMouseEnter}
+            onMouseOut={onMouseOut}
+          />
+          {@props.labelText}
+        </label>
+      </span>
+    else
+      <span className="validation-input #{className}">
+        { icon }
+        <label className={inputError}>
+          {@state.error || @props.labelText}
+        </label>
+        <input
+          className={inputError}
+          ref="input"
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          id={name}
+          onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onMouseEnter={onMouseEnter}
+          onMouseOut={onMouseOut}
+        />
+      </span>
+
 
 
   getInitialState: -> {
