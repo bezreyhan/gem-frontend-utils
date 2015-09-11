@@ -1,10 +1,20 @@
 'use strict';
 
-var React = require('react'),
-    classnames = require('classnames'),
-    SlidingPanelBodySend = require('../../components/accounts/sliding_panel_body_send');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var SlidingPanel = React.createClass({
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _componentsAccountsSliding_panel_body_send = require('../../components/accounts/sliding_panel_body_send');
+
+var _componentsAccountsSliding_panel_body_send2 = _interopRequireDefault(_componentsAccountsSliding_panel_body_send);
+
+var SlidingPanel = _react2['default'].createClass({
   displayName: 'SlidingPanel',
 
   render: function render() {
@@ -14,22 +24,22 @@ var SlidingPanel = React.createClass({
     var isOpen = _state.isOpen;
     var panelIndex = _state.panelIndex;
 
-    var slidingPanelClass = classnames('sliding-panel', { 'is-visible': isOpen });
-    var clickLayerClass = classnames('click-layer', { 'is-visible': isOpen });
+    var slidingPanelClass = (0, _classnames2['default'])('sliding-panel', { 'is-visible': isOpen });
+    var clickLayerClass = (0, _classnames2['default'])('click-layer', { 'is-visible': isOpen });
 
     var navIcons = ['pencil', 'pencil', 'pencil'].map(function (iconClass, i) {
       if (panelIndex === i) {
-        return React.createElement('div', { className: 'nav-icon ' + iconClass + ' selected', onClick: _this.openPanel.bind(null, i) });
+        return _react2['default'].createElement('div', { className: 'nav-icon ' + iconClass + ' selected', onClick: _this.openPanel.bind(null, i) });
       } else {
-        return React.createElement('div', { className: 'nav-icon ' + iconClass, onClick: _this.openPanel.bind(null, i) });
+        return _react2['default'].createElement('div', { className: 'nav-icon ' + iconClass, onClick: _this.openPanel.bind(null, i) });
       }
     });
 
-    var body = [React.createElement(SlidingPanelBodySend, null), React.createElement(
+    var body = [_react2['default'].createElement(_componentsAccountsSliding_panel_body_send2['default'], null), _react2['default'].createElement(
       'div',
       null,
       'Hello'
-    ), React.createElement(
+    ), _react2['default'].createElement(
       'div',
       null,
       'Bye'
@@ -37,53 +47,53 @@ var SlidingPanel = React.createClass({
       return panelIndex === i;
     });
 
-    return React.createElement(
+    return _react2['default'].createElement(
       'span',
       { className: 'sliding-panel-container' },
-      React.createElement(
+      _react2['default'].createElement(
         'button',
         { type: 'button', className: 'sliding-panel-button', onClick: this.openPanel.bind(null, 0) },
         'Btn 1'
       ),
-      React.createElement(
+      _react2['default'].createElement(
         'button',
         { type: 'button', className: 'sliding-panel-button', onClick: this.openPanel.bind(null, 1) },
         'Btn 2'
       ),
-      React.createElement(
+      _react2['default'].createElement(
         'button',
         { type: 'button', className: 'sliding-panel-button', onClick: this.openPanel.bind(null, 2) },
         'Btn 3'
       ),
-      React.createElement(
+      _react2['default'].createElement(
         'div',
         { className: slidingPanelClass },
-        React.createElement(
+        _react2['default'].createElement(
           'nav',
           null,
           navIcons
         ),
-        React.createElement(
+        _react2['default'].createElement(
           'div',
           { className: 'sliding-panel-body' },
           body
         ),
-        React.createElement(
+        _react2['default'].createElement(
           'footer',
           null,
-          React.createElement(
+          _react2['default'].createElement(
             'button',
             { type: 'text' },
             'Cancel'
           ),
-          React.createElement(
+          _react2['default'].createElement(
             'button',
             { type: 'text' },
             'Send'
           )
         )
       ),
-      React.createElement('div', { className: clickLayerClass, onClick: this.closePanel })
+      _react2['default'].createElement('div', { className: clickLayerClass, onClick: this.closePanel })
     );
   },
 

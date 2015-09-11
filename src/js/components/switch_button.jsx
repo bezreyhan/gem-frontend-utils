@@ -1,19 +1,19 @@
-let React = require('react');
+import React, { PropTypes } from 'react';
 
 
-let SwitchButton = React.createClass({
+const SwitchButton = React.createClass({
   displayName: 'SwitchButton',
 
 
   propTypes: {
-    isOn: React.PropTypes.bool
+    isOn: PropTypes.bool
   },
 
 
   render() {
-    let {isOn} = this.state;
-    let status = isOn ? 'active' : '';
-    let text = isOn
+    const { isOn } = this.state;
+    const status = isOn ? 'active' : '';
+    const text = isOn
                 ? <span className='active-text'>ON</span> 
                 : <span className='inactive-text'>OFF</span>
 

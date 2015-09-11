@@ -1,5 +1,5 @@
 import React from 'react';
-import component from './validation_input';
+import component from './hidden_secret_box';
 
 React.render(
   component,

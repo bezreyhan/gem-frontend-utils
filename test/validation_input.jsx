@@ -12,7 +12,7 @@ const ValidationInputTest = <ValidationInput
   name='Test'
   validations={{minLength: 5}}
   onChange={onChange}
-  placeholder='just for a sec'
+  placeholder='just for a min'
 />
 
 export default ValidationInputTest;

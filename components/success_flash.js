@@ -1,15 +1,32 @@
-var React, SuccessFlash;
+'use strict';
 
-React = require('react');
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 
-SuccessFlash = React.createClass({
-  render: function() {
-    var successDisplay;
-    successDisplay = this.props.status ? 'show' : 'hide';
-    return React.createElement("div", {
-      "className": "success-flash " + successDisplay
-    }, this.props.status);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var SuccessFlash = _react2['default'].createClass({
+  displayName: 'SuccessFlash',
+
+  props: {
+    status: _react.PropTypes.string
+  },
+
+  render: function render() {
+    var successDisplay = this.props.status ? 'show' : 'hide';
+
+    return _react2['default'].createElement(
+      'div',
+      { className: 'success-flash ' + successDisplay },
+      this.props.status
+    );
   }
 });
 
-module.exports = SuccessFlash;
+exports['default'] = SuccessFlash;
+module.exports = exports['default'];

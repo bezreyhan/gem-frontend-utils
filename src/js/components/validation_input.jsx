@@ -105,9 +105,8 @@ const ValidationInput = React.createClass({
     //             with the provided text
     labelText: PropTypes.string,
     className: PropTypes.string,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    onBlur: PropTypes.func
+    // i.e. text, checkbox
+    type: PropTypes.string
   },
 
 
@@ -117,7 +116,7 @@ const ValidationInput = React.createClass({
 
     if (this.props.type === 'checkbox' ) {
       return (
-        <span className='validation-input #{className}'>
+        <span className={`validation-input ${className}`}>
           <label className={inputError}>
             {this.state.error}
           </label>
@@ -134,7 +133,7 @@ const ValidationInput = React.createClass({
       );
     }
     return (
-      <span className='validation-input #{className}'>
+      <span className={`validation-input ${className}`}>
         <label className={inputError}>
           {this.state.error || this.props.labelText}
         </label>

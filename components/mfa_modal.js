@@ -73,20 +73,20 @@ var MFAModal = React.createClass({
         { className: 'modal-window ' + modalDisplay },
         React.createElement(
           'div',
-          { className: "modal-inner" },
+          { className: 'modal-inner' },
           React.createElement(
             'div',
-            { className: "modal-inner-header" },
+            { className: 'modal-inner-header' },
             React.createElement(
               'h5',
-              { className: "modal-title" },
+              { className: 'modal-title' },
               header
             ),
-            React.createElement('div', { className: "modal-close", onClick: this.closeModal })
+            React.createElement('div', { className: 'modal-close', onClick: this.closeModal })
           ),
           React.createElement(
             'div',
-            { className: "modal-inner-content" },
+            { className: 'modal-inner-content' },
             React.createElement('div', { className: 'loading-spinner ' + spinnerClass }),
             React.createElement(ErrorFlash, { error: this.state.error }),
             React.createElement(
@@ -109,13 +109,13 @@ var MFAModal = React.createClass({
               React.createElement(
                 'div',
                 { className: 'action-group ' + developerStatus },
-                this.state.isConfirmed ? React.createElement(ValidationInput, { type: "text", ref: "mfa_token",
-                  placeholder: "Enter code",
-                  name: "MFA Token",
+                this.state.isConfirmed ? React.createElement(ValidationInput, { type: 'text', ref: 'mfa_token',
+                  placeholder: 'Enter code',
+                  name: 'MFA Token',
                   validations: { length: 8 },
-                  className: "mfa-input-container"
+                  className: 'mfa-input-container'
                 }) : null,
-                React.createElement('input', { className: 'action-btn', type: 'submit', value: "Save" })
+                React.createElement('input', { className: 'action-btn', type: 'submit', value: 'Save' })
               )
             )
           )

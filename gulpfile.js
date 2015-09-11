@@ -9,6 +9,7 @@ var eslint = require('gulp-eslint');
 var plumber = require('gulp-plumber');
 var notify = require("gulp-notify");
 var changed = require('gulp-changed');
+var watchify = require('watchify');
 
 
 function handleErrors() {
@@ -77,15 +78,25 @@ gulp.task('browserify', function() {
     transform: ['babelify', 'coffee-reactify']
   });
 
-  return b
-    .bundle()
-    .on('error', handleErrors)
-    // Use vinyl-source-stream to make the
-    // stream gulp compatible. Specify the
-    // desired output filename here.
-    .pipe(source('COMPONENT_TO_TEST.js'))
-    // Specify the output destination
-    .pipe(gulp.dest('./test'))
+  b = watchify(b);
+    // Rebundle on update
+  b.on('update', function (srcs) {
+    bundle();
+  });
+
+  function bundle() {
+    return b
+      .bundle()
+      .on('error', handleErrors)
+      // Use vinyl-source-stream to make the
+      // stream gulp compatible. Specify the
+      // desired output filename here.
+      .pipe(source('COMPONENT_TO_TEST.js'))
+      // Specify the output destination
+      .pipe(gulp.dest('./test'))
+  }
+
+  return bundle();
 });
 
 

@@ -1,34 +1,38 @@
 'use strict';
 
-var React = require('react');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var SwitchButton = React.createClass({
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var SwitchButton = _react2['default'].createClass({
   displayName: 'SwitchButton',
 
   propTypes: {
-    isOn: React.PropTypes.bool
+    isOn: _react.PropTypes.bool
   },
 
   render: function render() {
     var isOn = this.state.isOn;
 
     var status = isOn ? 'active' : '';
-    var text = isOn ? React.createElement(
+    var text = isOn ? _react2['default'].createElement(
       'span',
       { className: 'active-text' },
       'ON'
-    ) : React.createElement(
+    ) : _react2['default'].createElement(
       'span',
       { className: 'inactive-text' },
       'OFF'
     );
 
-    return React.createElement(
+    return _react2['default'].createElement(
       'label',
       { className: 'switch-button ' + status,
         onClick: this.props.onClick || this.toggleStatus
       },
-      React.createElement(
+      _react2['default'].createElement(
         'div',
         { className: 'checkbox ' + status },
         text

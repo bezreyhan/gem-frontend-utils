@@ -4,9 +4,13 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; })();
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 var _react = require('react');
 
@@ -123,29 +127,22 @@ var ValidationInput = _react2['default'].createClass({
     //             with the provided text
     labelText: _react.PropTypes.string,
     className: _react.PropTypes.string,
-    onChange: _react.PropTypes.func,
-    onFocus: _react.PropTypes.func,
-    onBlur: _react.PropTypes.func
+    // i.e. text, checkbox
+    type: _react.PropTypes.string
   },
 
   render: function render() {
     var inputError = this.state.error ? 'error' : '';
     var _props = this.props;
-    var type = _props.type;
-    var placeholder = _props.placeholder;
-    var value = _props.value;
     var className = _props.className;
-    var onChange = _props.onChange;
     var name = _props.name;
-    var onBlur = _props.onBlur;
-    var onFocus = _props.onFocus;
-    var onMouseEnter = _props.onMouseEnter;
-    var onMouseOut = _props.onMouseOut;
+
+    var rest = _objectWithoutProperties(_props, ['className', 'name']);
 
     if (this.props.type === 'checkbox') {
       return _react2['default'].createElement(
         'span',
-        { className: 'validation-input #{className}' },
+        { className: 'validation-input ' + className },
         _react2['default'].createElement(
           'label',
           { className: inputError },
@@ -154,44 +151,28 @@ var ValidationInput = _react2['default'].createClass({
         _react2['default'].createElement(
           'label',
           null,
-          _react2['default'].createElement('input', {
+          _react2['default'].createElement('input', _extends({
             className: inputError,
             ref: 'input',
-            type: type,
-            placeholder: placeholder,
-            value: value,
-            id: name,
-            onChange: onChange,
-            onFocus: onFocus,
-            onBlur: onBlur,
-            onMouseEnter: onMouseEnter,
-            onMouseOut: onMouseOut
-          }),
+            id: name
+          }, rest)),
           this.props.labelText
         )
       );
     }
     return _react2['default'].createElement(
       'span',
-      { className: 'validation-input #{className}' },
+      { className: 'validation-input ' + className },
       _react2['default'].createElement(
         'label',
         { className: inputError },
         this.state.error || this.props.labelText
       ),
-      _react2['default'].createElement('input', {
+      _react2['default'].createElement('input', _extends({
         className: inputError,
         ref: 'input',
-        type: type,
-        placeholder: placeholder,
-        value: value,
-        id: name,
-        onChange: onChange,
-        onFocus: onFocus,
-        onBlur: onBlur,
-        onMouseEnter: onMouseEnter,
-        onMouseOut: onMouseOut
-      })
+        id: name
+      }, rest))
     );
   },
 
