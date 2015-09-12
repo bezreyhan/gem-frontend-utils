@@ -1,32 +1,65 @@
-var ErrorFlash, React;
+'use strict';
 
-React = require('react');
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 
-ErrorFlash = React.createClass({
-  render: function() {
-    var error, errorDisplay, errors;
-    error = this.props.error;
-    errorDisplay = error ? Array.isArray(error) && error.length === 0 ? 'hide' : 'show' : 'hide';
-    if (error === 'show') {
-      errors = (function() {
-        var i, len, ref, results;
-        ref = this.props.error;
-        results = [];
-        for (i = 0, len = ref.length; i < len; i++) {
-          error = ref[i];
-          results.push(React.createElement("div", null, error));
-        }
-        return results;
-      }).call(this);
-    } else {
-      errors = [];
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var ErrorFlash = _react2['default'].createClass({
+  displayName: 'ErrorFlash',
+
+  propTypes: {
+    error: _react.PropTypes.oneOf([_react.PropTypes.array, _react.PropTypes.string])
+  },
+
+  render: function render() {
+    var error = this.props.error;
+
+    var errorDisplay = 'show';
+    if (!error || error && Array.isArray(error) && error.length === 0) {
+      errorDisplay = 'hide';
     }
-    return React.createElement("div", {
-      "className": "flash-error " + errorDisplay
-    }, React.createElement("p", null, this.props.error), React.createElement("a", {
-      "href": 'mailto:support@gem.co'
-    }, "Having trouble? Contact support."));
+
+    var errors = undefined;
+    if (error === 'hide') {
+      errors = null;
+    } else if (Array.isArray(error)) {
+      errors = error.map(function (e) {
+        return _react2['default'].createElement(
+          'div',
+          null,
+          e
+        );
+      });
+    } else {
+      errors = _react2['default'].createElement(
+        'div',
+        null,
+        error
+      );
+    }
+
+    return _react2['default'].createElement(
+      'div',
+      { className: 'flash-error ' + errorDisplay },
+      _react2['default'].createElement(
+        'p',
+        null,
+        errors
+      ),
+      _react2['default'].createElement(
+        'a',
+        { href: 'mailto:supportthis.gem.co' },
+        'Having trouble? Contact support.'
+      )
+    );
   }
 });
 
-module.exports = ErrorFlash;
+exports['default'] = ErrorFlash;
+module.exports = exports['default'];

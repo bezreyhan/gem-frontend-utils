@@ -1,5 +1,5 @@
 import React from 'react';
-import component from './hidden_secret_box';
+import component from './error_flash';
 
 React.render(
   component,

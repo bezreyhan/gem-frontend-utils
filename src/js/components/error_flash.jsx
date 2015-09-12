@@ -1,34 +1,49 @@
-
-React = require 'react'
-
-
-ErrorFlash = React.createClass {
-
-  render: ->
-    {error} = @props
-
-    errorDisplay =
-      if error
-        if Array.isArray(error) and error.length == 0
-          'hide'
-        else
-          'show'
-      else
-        'hide'
-
-    if error == 'show'
-      errors = for error in @props.error
-        <div>{error}</div>
-    else
-      errors = []
-
-    
-    <div className="flash-error #{errorDisplay}">
-      <p>{@props.error}</p>
-      
-      <a href='mailto:support@gem.co'>Having trouble? Contact support.</a>
-    </div>
-}
+import React, { PropTypes } from 'react';
 
 
-module.exports = ErrorFlash
+const ErrorFlash = React.createClass({
+  displayName: 'ErrorFlash',
+
+
+  propTypes: {
+    error: PropTypes.oneOf([
+      PropTypes.array,
+      PropTypes.string
+    ])
+  },
+
+
+  render() {
+    const { error } = this.props;
+
+    let errorDisplay = 'show';
+    debugger
+    if (!error || (error && Array.isArray(error) && error.length === 0)) {
+      errorDisplay = 'hide';
+    }
+
+    let errors;
+    if (error === 'hide') {
+      errors = null;
+    }
+    else if (Array.isArray(error)) {
+      errors = error.map((e) => {
+        return <div>{e}</div>;
+      });
+    }
+    else {
+      errors = <div>{error}</div>;
+    }
+
+    return (
+      <div className={`flash-error ${errorDisplay}`}>
+        <p>{errors}</p>
+
+        <a href='mailto:supportthis.gem.co'>Having trouble? Contact support.</a>
+      </div>
+    );
+  }
+});
+
+
+export default ErrorFlash;
