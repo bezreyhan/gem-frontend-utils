@@ -1,9 +1,6 @@
 var gulp = require('gulp');
-var coffee = require('gulp-coffee');
-var cjsx = require('gulp-cjsx');
 var gutil = require('gulp-util');
 var babel = require('gulp-babel');
-var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var eslint = require('gulp-eslint');
 var plumber = require('gulp-plumber');
@@ -42,24 +39,6 @@ gulp.task('lint', function() {
 });
 
 
-gulp.task('coffee-react', function() {
-  gulp.src('src/js/components/*.coffee')
-    .pipe(cjsx({bare: true}).on('error', gutil.log))
-    // files get added to the root folder rather than a dist folder
-    // because it makes requireing them easier
-    .pipe(gulp.dest('components'))
-});
-
-
-gulp.task('coffee', function() {
-  gulp.src('src/js/utils/*.coffee')
-    .pipe(coffee({bare: true}).on('error', gutil.log))
-    // files get added to the root folder rather than a dist folder
-    // because it makes requireing them easier
-    .pipe(gulp.dest('utils'))
-});
-
-
 gulp.task('babel', ['lint'], function() {
   gulp.src(['src/js/**/*.js', 'src/js/**/*.jsx'])
     .pipe(plumber())
@@ -70,41 +49,11 @@ gulp.task('babel', ['lint'], function() {
     .pipe(gulp.dest('./'))
 });
 
-gulp.task('browserify', function() {
-  var b = browserify({
-    entries: './test/COMPONENT_TO_TEST.jsx',
-    extensions: ['.coffee', '.js', '.jsx'],
-    debug: true,
-    transform: ['babelify', 'coffee-reactify']
-  });
-
-  b = watchify(b);
-    // Rebundle on update
-  b.on('update', function (srcs) {
-    bundle();
-  });
-
-  function bundle() {
-    return b
-      .bundle()
-      .on('error', handleErrors)
-      // Use vinyl-source-stream to make the
-      // stream gulp compatible. Specify the
-      // desired output filename here.
-      .pipe(source('COMPONENT_TO_TEST.js'))
-      // Specify the output destination
-      .pipe(gulp.dest('./test'))
-  }
-
-  return bundle();
-});
-
 
 gulp.task('watch', function() {
   gulp.watch(['src/js/**/*.js', 'src/js/**/*.jsx'], ['babel']);
-  gulp.watch('src/js/components/*.coffee', ['coffee-react']);
   gulp.watch('src/js/utils/*.coffee', ['coffee']);
 });
 
 
-gulp.task('default', ['watch', 'coffee-react', 'coffee', 'babel']);
+gulp.task('default', ['watch', 'babel']);
