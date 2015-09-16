@@ -27,16 +27,16 @@ const ErrorFlash = React.createClass({
     }
     else if (Array.isArray(error)) {
       errors = error.map((err, i) => {
-        return <div key={i}>{err}</div>;
+        return <div key={i} className='error'>{err}</div>;
       });
     }
     else {
-      errors = <div>{error}</div>;
+      errors = <div className='error'>{error}</div>;
     }
 
     return (
       <div className={`flash-error ${errorDisplay}`}>
-        <p>{errors}</p>
+        <p className='errors'>{errors}</p>
 
         <a href='mailto:supportthis.gem.co'>Having trouble? Contact support.</a>
       </div>

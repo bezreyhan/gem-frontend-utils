@@ -32,14 +32,14 @@ var ErrorFlash = _react2['default'].createClass({
       errors = error.map(function (err, i) {
         return _react2['default'].createElement(
           'div',
-          { key: i },
+          { key: i, className: 'error' },
           err
         );
       });
     } else {
       errors = _react2['default'].createElement(
         'div',
-        null,
+        { className: 'error' },
         error
       );
     }
@@ -49,7 +49,7 @@ var ErrorFlash = _react2['default'].createClass({
       { className: 'flash-error ' + errorDisplay },
       _react2['default'].createElement(
         'p',
-        null,
+        { className: 'errors' },
         errors
       ),
       _react2['default'].createElement(

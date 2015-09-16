@@ -21,9 +21,11 @@
     "react": "^0.13.3"
   },
   "devDependencies": {
+    "babel": "^5.8.23",
     "babel-eslint": "^4.1.1",
     "babelify": "^6.3.0",
     "browserify": "^11.1.0",
+    "chai": "^3.2.0",
     "coffee-reactify": "^4.0.0",
     "eslint-plugin-react": "^3.3.2",
     "gulp": "^3.9.0",
@@ -35,6 +37,8 @@
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
     "gulp-util": "^3.0.6",
+    "jquery": "^2.1.4",
+    "jsdom": "^6.5.0",
     "pretty-hrtime": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.4.0"
