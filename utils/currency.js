@@ -1,10 +1,14 @@
-var Currency;
+'use strict';
 
-Currency = {
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var Currency = {
   bitcoin: 'BTC',
   bitcoin_testnet: 'TBTC',
   litecoin: 'LTC',
   dogecoin: 'DOGE'
 };
 
-module.exports = Currency;
+exports['default'] = Currency;
+module.exports = exports['default'];
