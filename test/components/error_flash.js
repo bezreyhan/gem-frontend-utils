@@ -3,7 +3,6 @@ import React from 'react/addons';
 const { TestUtils } = React.addons;
 import { expect } from 'chai';
 import ErrorFlash from '../../src/js/components/error_flash';
-import $ from 'jquery';
 
 
 describe('ErrorFlash', () => {
