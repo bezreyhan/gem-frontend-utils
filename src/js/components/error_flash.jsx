@@ -6,7 +6,7 @@ const ErrorFlash = React.createClass({
 
 
   propTypes: {
-    error: PropTypes.oneOf([
+    error: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.string
     ])
@@ -17,7 +17,6 @@ const ErrorFlash = React.createClass({
     const { error } = this.props;
 
     let errorDisplay = 'show';
-    debugger
     if (!error || (error && Array.isArray(error) && error.length === 0)) {
       errorDisplay = 'hide';
     }
@@ -27,8 +26,8 @@ const ErrorFlash = React.createClass({
       errors = null;
     }
     else if (Array.isArray(error)) {
-      errors = error.map((e) => {
-        return <div>{e}</div>;
+      errors = error.map((err, i) => {
+        return <div key={i}>{err}</div>;
       });
     }
     else {

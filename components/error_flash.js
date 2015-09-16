@@ -14,7 +14,7 @@ var ErrorFlash = _react2['default'].createClass({
   displayName: 'ErrorFlash',
 
   propTypes: {
-    error: _react.PropTypes.oneOf([_react.PropTypes.array, _react.PropTypes.string])
+    error: _react.PropTypes.oneOfType([_react.PropTypes.array, _react.PropTypes.string])
   },
 
   render: function render() {
@@ -29,11 +29,11 @@ var ErrorFlash = _react2['default'].createClass({
     if (error === 'hide') {
       errors = null;
     } else if (Array.isArray(error)) {
-      errors = error.map(function (e) {
+      errors = error.map(function (err, i) {
         return _react2['default'].createElement(
           'div',
-          null,
-          e
+          { key: i },
+          err
         );
       });
     } else {
