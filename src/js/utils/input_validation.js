@@ -13,8 +13,8 @@
 */ 
 
 
-export default function validate({validations, value, name}) {
-  // return without an error if 
+export default function validateInput({validations, value, name}) {
+  // Return without an error if the input is optional.
   if (validations.optional) return undefined
 
   for (let validationType of Object.keys(validations)) {

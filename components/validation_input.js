@@ -4,9 +4,11 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
+var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; })();
+
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; })();
+exports.validateInput = validateInput;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -16,7 +18,126 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-function validator(validationType, inputValue, requirement) {
+var ValidationInput = _react2['default'].createClass({
+  displayName: 'ValidationInput',
+
+  propTypes: {
+    // Used in error messages and gets added to the input element
+    // as an id prop, which can be utilized by a <label for=...>
+    name: _react.PropTypes.string,
+    // Optional - creates a label that goes above the input
+    //             with the provided text
+    labelText: _react.PropTypes.string,
+    className: _react.PropTypes.string,
+    // i.e. text, checkbox
+    type: _react.PropTypes.string,
+    value: _react.PropTypes.string,
+    error: _react.PropTypes.string
+  },
+
+  render: function render() {
+    var inputError = this.state.error ? 'error' : '';
+    var _props = this.props;
+    var className = _props.className;
+    var error = _props.error;
+    var labelText = _props.labelText;
+    var name = _props.name;
+
+    var rest = _objectWithoutProperties(_props, ['className', 'error', 'labelText', 'name']);
+
+    if (this.props.type === 'checkbox') {
+      return _react2['default'].createElement(
+        'span',
+        { className: 'validation-input ' + className },
+        _react2['default'].createElement(
+          'label',
+          { className: inputError },
+          error
+        ),
+        _react2['default'].createElement(
+          'label',
+          null,
+          _react2['default'].createElement('input', _extends({
+            className: inputError,
+            ref: 'input',
+            id: name
+          }, rest)),
+          this.props.labelText
+        )
+      );
+    }
+    return _react2['default'].createElement(
+      'span',
+      { className: 'validation-input ' + className },
+      _react2['default'].createElement(
+        'label',
+        { className: inputError },
+        error || labelText
+      ),
+      _react2['default'].createElement('input', _extends({
+        className: inputError,
+        ref: 'input',
+        id: name
+      }, rest))
+    );
+  }
+});
+
+exports['default'] = ValidationInput;
+
+/*
+ * Checks all of the provided validations and will return an error
+ * if any of the validations are not met.
+ * If all validations are met undefined is returned.
+ *
+ * PARAMS
+ * 1) validations: Object - key, val pairs of validations that the
+ *                          input value must pass.
+ * 2) value: String - the inputs value
+ * 3) name: String - the name of the input. Name is used in the error
+                   - messages (e.g 'NAME must be at least 6 charachters long')  
+*/
+
+function validateInput(_ref) {
+  var validations = _ref.validations;
+  var value = _ref.value;
+  var name = _ref.name;
+
+  // return without an error if
+  if (validations.optional) return undefined;
+
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = Object.keys(validations)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var validationType = _step.value;
+
+      var requirement = validations[validationType];
+      if (!validator(validationType, requirement, value)) {
+        return getError(validationType, requirement, name);
+      }
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator['return']) {
+        _iterator['return']();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  return undefined;
+}
+
+function validator(validationType, requirement, inputValue) {
   switch (validationType) {
     case 'minLength':
       var minLength = requirement;
@@ -72,7 +193,7 @@ function validator(validationType, inputValue, requirement) {
   }
 }
 
-function getError(validationType, name, requirement) {
+function getError(validationType, requirement, name) {
   // name is from this.props
   switch (validationType) {
     case 'minLength':
@@ -114,120 +235,3 @@ function getError(validationType, name, requirement) {
       throw new Error('Not a defined validation rule. Check defined validations');
   }
 }
-
-var ValidationInput = _react2['default'].createClass({
-  displayName: 'ValidationInput',
-
-  propTypes: {
-    validations: _react.PropTypes.object,
-    // Used in error messages and gets added to the input element
-    // as an id prop, which can be utilized by a <label for=...>
-    name: _react.PropTypes.string,
-    // Optional - creates a label that goes above the input
-    //             with the provided text
-    labelText: _react.PropTypes.string,
-    className: _react.PropTypes.string,
-    // i.e. text, checkbox
-    type: _react.PropTypes.string
-  },
-
-  render: function render() {
-    var inputError = this.state.error ? 'error' : '';
-    var _props = this.props;
-    var className = _props.className;
-    var name = _props.name;
-
-    var rest = _objectWithoutProperties(_props, ['className', 'name']);
-
-    if (this.props.type === 'checkbox') {
-      return _react2['default'].createElement(
-        'span',
-        { className: 'validation-input ' + className },
-        _react2['default'].createElement(
-          'label',
-          { className: inputError },
-          this.state.error
-        ),
-        _react2['default'].createElement(
-          'label',
-          null,
-          _react2['default'].createElement('input', _extends({
-            className: inputError,
-            ref: 'input',
-            id: name
-          }, rest)),
-          this.props.labelText
-        )
-      );
-    }
-    return _react2['default'].createElement(
-      'span',
-      { className: 'validation-input ' + className },
-      _react2['default'].createElement(
-        'label',
-        { className: inputError },
-        this.state.error || this.props.labelText
-      ),
-      _react2['default'].createElement('input', _extends({
-        className: inputError,
-        ref: 'input',
-        id: name
-      }, rest))
-    );
-  },
-
-  getInitialState: function getInitialState() {
-    return {
-      error: ''
-    };
-  },
-
-  validate: function validate() {
-    var _this = this;
-
-    // error will be set using the ErrorMap.
-    // The error is rendered in the label tag above the input
-    var error = null;
-
-    // get the value of the input. First checks if the input is
-    // is a checkbox. If so, check if it is checked
-    var inputNode = _react2['default'].findDOMNode(this.refs.input);
-    var inputValue = this.props.type === 'checkbox' ? inputNode.checked : inputNode.value;
-
-    var validations = this.props.validations;
-
-    // Does not attempt to validate an input if the input has
-    // been marked optional AND is empty.
-    if (validations.optional && inputValue === '') {
-      if (this.state.error) this.setState({ error: '' });
-      return true;
-    }
-    var validationTypes = Object.keys(validations);
-
-    return validationTypes.every(function (validationType) {
-      var requirement = validations[validationType];
-
-      if (validator(validationType, inputValue, requirement)) {
-        if (_this.state.error) {
-          _this.setState({ error: '' });
-        }
-        return true;
-      }
-      error = getError(validationType, _this.props.name, requirement);
-      _this.setState({ error: error });
-      return false;
-    });
-  },
-
-  getValue: function getValue() {
-    return _react2['default'].findDOMNode(this.refs.input).value;
-  },
-
-  clearInput: function clearInput() {
-    this.setState({ error: '' });
-    _react2['default'].findDOMNode(this.refs.input).value = '';
-  }
-});
-
-exports['default'] = ValidationInput;
-module.exports = exports['default'];
