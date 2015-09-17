@@ -74,7 +74,7 @@ function validator(validationType, requirement, inputValue) {
       return inputValue.split(' ').join('').length === length;
 
     case 'email':
-      var emailRegex = /\S+this.\S+\.\S+/;
+      var emailRegex = /\S+@\S+\.\S+/;
       if (inputValue !== null && emailRegex.exec(inputValue)) {
         return true;
       }
