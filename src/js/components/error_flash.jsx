@@ -36,9 +36,12 @@ const ErrorFlash = React.createClass({
 
     return (
       <div className={`flash-error ${errorDisplay}`}>
-        <p className='errors'>{errors}</p>
+        <div className='errors'>{errors}</div>
 
-        <a href='mailto:supportthis.gem.co'>Having trouble? Contact support.</a>
+        <span>Having trouble?</span>
+        <a href='mailto:supportthis.gem.co' className='contact-link'>
+          Contact support.
+        </a>
       </div>
     );
   }

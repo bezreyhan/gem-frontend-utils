@@ -48,14 +48,19 @@ var ErrorFlash = _react2['default'].createClass({
       'div',
       { className: 'flash-error ' + errorDisplay },
       _react2['default'].createElement(
-        'p',
+        'div',
         { className: 'errors' },
         errors
       ),
       _react2['default'].createElement(
+        'span',
+        null,
+        'Having trouble?'
+      ),
+      _react2['default'].createElement(
         'a',
-        { href: 'mailto:supportthis.gem.co' },
-        'Having trouble? Contact support.'
+        { href: 'mailto:supportthis.gem.co', className: 'contact-link' },
+        'Contact support.'
       )
     );
   }

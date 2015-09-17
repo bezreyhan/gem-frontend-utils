@@ -1,4 +1,3 @@
-
 /*
  * Checks all of the provided validations and will return an error
  * if any of the validations are not met.
@@ -9,7 +8,7 @@
  *                          input value must pass.
  * 2) value: String - the inputs value
  * 3) name: String - the name of the input. Name is used in the error
-                   - messages (e.g 'NAME must be at least 6 charachters long')  
+                   - messages (e.g 'NAME must be at least 6 charachters long')
 */
 
 'use strict';

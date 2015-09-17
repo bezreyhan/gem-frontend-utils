@@ -1,4 +1,3 @@
-
 /*
  * Checks all of the provided validations and will return an error
  * if any of the validations are not met.
@@ -9,18 +8,18 @@
  *                          input value must pass.
  * 2) value: String - the inputs value
  * 3) name: String - the name of the input. Name is used in the error
-                   - messages (e.g 'NAME must be at least 6 charachters long')  
-*/ 
+                   - messages (e.g 'NAME must be at least 6 charachters long')
+*/
 
 
 export default function validateInput({validations, value, name}) {
   // Return without an error if the input is optional.
-  if (validations.optional) return undefined
+  if (validations.optional) return undefined;
 
   for (let validationType of Object.keys(validations)) {
     const requirement = validations[validationType];
     if (!validator(validationType, requirement, value)) {
-      return getError(validationType, requirement, name)
+      return getError(validationType, requirement, name);
     }
   }
 
