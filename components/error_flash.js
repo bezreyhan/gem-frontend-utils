@@ -54,12 +54,12 @@ var ErrorFlash = _react2['default'].createClass({
       ),
       _react2['default'].createElement(
         'span',
-        null,
-        'Having trouble?'
+        { className: 'contact-support-text' },
+        'Please try again or '
       ),
       _react2['default'].createElement(
         'a',
-        { href: 'mailto:supportthis.gem.co', className: 'contact-link' },
+        { href: 'mailto:supportthis.gem.co', className: 'contact-support-link' },
         'Contact support.'
       )
     );
