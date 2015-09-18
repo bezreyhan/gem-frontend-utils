@@ -12,7 +12,7 @@
 */
 
 
-export default function validateInput({validations, value, name}) {
+export default function validate({validations, value, name}) {
   // Return without an error if the input is optional.
   if (validations.optional) return undefined;
 
